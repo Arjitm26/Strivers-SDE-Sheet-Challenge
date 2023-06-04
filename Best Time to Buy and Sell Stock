@@ -1,0 +1,17 @@
+#include <bits/stdc++.h> 
+int maximumProfit(vector<int> &prices){
+    
+    int profit=0;
+    int i=0,j=0,e=prices.size();
+    while(i <= e-1 && j <= e-1){
+        if(prices[j] > prices[i]){
+            profit = max(profit,prices[j] - prices[i]);
+        }
+        else{
+            i = j;
+        }
+        j++;
+    }
+
+    return profit;
+}
