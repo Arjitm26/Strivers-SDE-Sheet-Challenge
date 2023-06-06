@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+
+vector<int> ninjaAndSortedArrays(vector<int>& arr1, vector<int>& arr2, int m, int n) {
+	
+	vector<int> ans;
+	stack<int> st1,st2;
+	for(int i=m-1; i>=0; i--){
+		st1.push(arr1[i]);
+	}
+
+	for(int i=n-1; i>=0; i--){
+		st2.push(arr2[i]);
+	}
+
+	while(!st1.empty() && !st2.empty()){
+		int first = st1.top();
+		int second = st2.top();
+
+		if(first > second){
+			ans.push_back(second);
+			st2.pop();
+		}
+		else{
+			ans.push_back(first);
+			st1.pop();
+		}
+	}
+
+	while(!st1.empty()){
+		int top = st1.top();
+		st1.pop();
+
+		ans.push_back(top);
+	}
+
+	while(!st2.empty()){
+		int top = st2.top();
+		st2.pop();
+
+		ans.push_back(top);
+	}
+
+	return ans;
+
+}
