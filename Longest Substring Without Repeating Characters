@@ -1,0 +1,43 @@
+#include <bits/stdc++.h> 
+int uniqueSubstrings(string s)
+{
+        if(s.length() == 0){
+            return 0;
+        }
+
+        int ans=0,l=s.length(),start=0,i=0;
+        string str="";
+        map<char,int> m;
+        while(start < l && i < l){
+            str += s[i];
+            m[s[i]]++;
+            if(str.length() == m.size()){
+                int len = str.length();
+                ans = max(ans,len);
+            }
+            else{
+                i = start;
+                start++;
+                str.clear();
+                m.clear();
+            }
+            i++;
+        }
+
+        return ans;
+}
+//codingninjas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
