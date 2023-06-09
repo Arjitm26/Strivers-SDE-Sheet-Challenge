@@ -1,0 +1,95 @@
+#include <bits/stdc++.h>
+
+/************************************************************
+
+    Following is the linked list node structure.
+    
+    template <typename T>
+    class Node {
+        public:
+        T data;
+        Node* next;
+
+        Node(T data) {
+            next = NULL;
+            this->data = data;
+        }
+
+        ~Node() {
+            if (next != NULL) {
+                delete next;
+            }
+        }
+    };
+
+************************************************************/
+Node<int>* solve(Node<int>* first,Node<int>* second){
+
+    Node<int>* temp1 = first;
+    Node<int>* temp2 = second;
+    Node<int>* head = new Node<int>(-1);
+    Node<int>* temp3 = head;
+
+    while(temp1 != NULL && temp2 != NULL){
+        if(temp1->data > temp2->data){
+            Node<int>* n = new Node<int>(temp2->data);
+            temp3->next = n;
+            temp2 = temp2->next;
+        }
+        else{
+            Node<int>* n = new Node<int>(temp1->data);
+            temp3->next = n;
+            temp1 = temp1->next;
+        }
+
+        temp3 = temp3->next;
+    }
+
+    while(temp1 != NULL){
+        Node<int>* n = new Node<int>(temp1->data);
+        temp3->next = n;
+        temp1 = temp1->next;
+        temp3 = temp3->next;
+    }
+
+    while(temp2 != NULL){
+        Node<int>* n = new Node<int>(temp2->data);
+        temp3->next = n;
+        temp2 = temp2->next;
+        temp3 = temp3->next;
+    }
+
+
+    return head->next;
+
+}
+Node<int>* sortTwoLists(Node<int>* first, Node<int>* second)
+{
+    return solve(first,second);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
