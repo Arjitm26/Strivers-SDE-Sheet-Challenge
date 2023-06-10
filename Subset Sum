@@ -1,0 +1,19 @@
+#include <bits/stdc++.h> 
+
+void solve(int idx,int sum,int n,vector<int> num,vector<int>& ans){
+    if(idx == n){
+        ans.push_back(sum);
+        return;
+    }
+
+    solve(idx+1,sum+num[idx],n,num,ans);
+    solve(idx+1,sum,n,num,ans);
+}
+vector<int> subsetSum(vector<int> &num)
+{
+    int n = num.size();
+    vector<int> ans;
+    solve(0,0,n,num,ans);
+    sort(ans.begin(),ans.end());
+    return ans;
+}
