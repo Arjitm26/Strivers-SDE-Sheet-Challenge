@@ -1,0 +1,19 @@
+#include <bits/stdc++.h> 
+
+void solve(int idx,string s,vector<string>& v){
+    if(idx == s.length()){
+        v.push_back(s);
+        return ;
+    }
+
+    for(int i=idx; i<s.length(); i++){
+        swap(s[i],s[idx]);
+        solve(idx+1,s,v);
+        swap(s[idx],s[i]);
+    }
+}
+vector<string> findPermutations(string &s) {
+    vector<string> v;
+    solve(0,s,v);
+    return v;
+}
