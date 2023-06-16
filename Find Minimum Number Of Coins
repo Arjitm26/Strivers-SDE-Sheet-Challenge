@@ -1,0 +1,33 @@
+#include <bits/stdc++.h> 
+
+int smaller(int amt){
+  int arr[9] = {1, 2, 5, 10, 20, 50, 100, 500, 1000};
+
+  for (int i = 8; i >= 0; i--) {
+    if (amt >= arr[i]) {
+      return arr[i];
+    }
+}
+
+    return 0;
+}
+
+void solve(int amt,int& count){
+    if(amt == 0){
+        return;
+    }
+    
+    int x = smaller(amt);
+
+    amt -= x;
+    ++count;
+
+    return solve(amt,count);
+}
+
+int findMinimumCoins(int amount) 
+{
+    int count = 0;
+    solve(amount,count);
+    return count;
+}
