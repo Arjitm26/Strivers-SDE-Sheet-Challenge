@@ -1,0 +1,37 @@
+#include <bits/stdc++.h> 
+class node{
+    public:
+    
+    node* arr[26];
+    node* get(char ch){
+        return arr[ch - 'a'];
+    }
+
+    void put(char ch,node* root){
+        arr[ch - 'a'] = root;
+    }
+
+    bool isthere(char ch){
+        return arr[ch - 'a'];
+    }
+};
+
+int distinctSubstring(string &word) {
+    
+    int count=0;
+    node* root = new node();
+    for(int i=0; i<word.size(); i++){
+        node* Node = root;
+        for(int j=i; j<word.size(); j++){
+            if(!Node->isthere(word[j])){
+                count++;
+                Node->put(word[j],new node());
+            }
+            Node = Node->get(word[j]);
+        }
+    }
+
+
+    return count;
+
+}
